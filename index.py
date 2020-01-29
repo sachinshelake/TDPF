@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 import datetime
 from math import ceil
 from utility.common import skycake, week_of_month
+#from pandasgui import show
 
 skycake()
 
@@ -23,7 +24,10 @@ inputClass=userid.lower()+'_'+str(week_of_month(date_time_obj))+'_'+str(date_tim
 #print(inputClass)
 filteredData=testData[testData["class"]==inputClass]
 uniqueDataFrame=filteredData.drop_duplicates("workflow_query_test_data_request")
-uniqueDataFrame=uniqueDataFrame.sort_values('sequence_no')
+#uniqueDataFrame=uniqueDataFrame.sort_values('sequence_no')
 uniqueDataFrame=uniqueDataFrame[["sequence_no", "user_id", "ait", "workflow_query_test_data_request"]]
 print("Data you would be interested in:")
 print(uniqueDataFrame)
+uniqueDataFrame.to_excel("output.xlsx")
+print("output is written at output.xlsx")
+#show(uniqueDataFrame)
